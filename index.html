@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS style -->
+    <link rel="stylesheet" href="style/index.css" />
+    <!-- Font -> Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/b024336020.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- GooglePie Chart -->
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <!-- javascript -->
+    <script type="module" src="index.js" defer></script>
+    <title>Investment Portfolio</title>
+  </head>
+  <body>
+    <header>
+      <h1>Fei's Investment Portfolio</h1>
+    </header>
+    <main>
+      <!-- main: data & chart -->
+      <div class="data">
+        <table id="table-data" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Change %</th>
+            <th colspan="2">Quantity</th>
+            <th>Value</th>
+            <th></th>
+          </tr>
+        </table>
+        <button class="btn-add" id="btn-add">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="modal" id="modal">
+          <div class="div-add-stock">
+            <input
+              type="text"
+              placeholder="search for the stock symbol"
+              id="input-add"
+            />
+            <div class="btn-group">
+              <button id="btn-add-stock">Add</button>
+              <button id="btn-cancel-stock">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart">
+        <div id="donutchart"></div>
+        <div class="legend"></div>
+      </div>
+    </main>
+    <footer><p>&copy;copyright - jingfei yao - 2023</p></footer>
+  </body>
+</html>

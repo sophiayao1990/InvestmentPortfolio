@@ -1,0 +1,219 @@
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 350px;
+  color: #f4fbff;
+  background-color: #023047;
+  border: 5px solid yellow;
+  font-family: "Inter", sans-serif;
+  padding: 0.71em;
+  text-align: center;
+}
+
+/* Header Part */
+h1 {
+  font-weight: 600;
+  font-size: 1.875rem;
+  padding: 1.6em 0 0.7em 0;
+}
+
+/* Main Data Part: data & chart */
+/* Main: data part */
+.data {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f4fbff;
+}
+table tr th {
+  background-color: #0b283c;
+  font-size: 1rem;
+  height: 3.75em;
+}
+table tr td {
+  font-size: 0.875rem;
+  padding: 0.8em;
+}
+.quantityCell {
+  width: 12%;
+  padding: 0;
+}
+table input {
+  width: 100%;
+  border: none;
+  font-size: 0.875rem;
+  color: #f4fbff;
+  background-color: #023047;
+  text-align: center;
+  padding-left: 0.5em;
+}
+table input :active {
+  color: #f4fbff;
+}
+table button {
+  color: #f4fbff;
+  background-color: #023047;
+  border: none;
+  font-size: 1.3rem;
+}
+.editIcon {
+  text-align: left;
+}
+
+.btn-add {
+  height: 40px;
+  background-color: #4c9cb9;
+  border: 0;
+  transition: all 0.3s ease 0s;
+  margin: 0.3em;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px #f4fbff;
+  cursor: pointer;
+}
+.btn-add:hover {
+  background-color: #3386a5;
+  transform: scale(1.01, 1.07);
+}
+.btn-add:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 1em rgba(255, 255, 255, 0.8);
+}
+.fa-plus {
+  font-size: 2rem;
+  color: #023047;
+  text-shadow: 0px 4px 4px rgba(51, 78, 172, 0.25);
+}
+
+.red {
+  color: #fb4e22;
+}
+.green {
+  color: green;
+}
+.white {
+  color: #f4fbff;
+}
+
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(2, 48, 71, 0.8);
+}
+.div-add-stock {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.div-add-stock input {
+  padding: 0.5em;
+  font-size: 1rem;
+  color: #023047;
+  border-radius: 5px;
+  border: none;
+  outline-color: #f4b941;
+}
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+}
+.btn-group button {
+  width: 30%;
+  padding: 0.5em;
+  font-size: 1rem;
+  background-color: #f4fbff;
+  color: #023047;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 8px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+}
+.btn-group button:hover {
+  background-color: #4c9cb9;
+  box-shadow: 0px 2px 4px #f4fbff;
+  color: #f4fbff;
+  transform: scale(1.05);
+}
+
+/* Main chart Part */
+.chart {
+  margin-top: 5px;
+}
+
+/* Footer */
+footer {
+  font-size: 0.75rem;
+  margin-top: 1em;
+}
+
+/* screen size 500px -> 1000px*/
+@media only screen and (min-width: 501px) and (max-width: 1000px) {
+  body {
+    border: 5px solid pink;
+  }
+  h1 {
+    font-size: 6vw;
+    /* 2.625rem */
+  }
+  table tr td,
+  table input {
+    font-size: 3vw;
+  }
+  .addBtn {
+    height: 65px;
+  }
+  .add {
+    font-size: 3rem;
+  }
+  footer {
+    font-size: 1.125rem;
+  }
+}
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  h1 {
+    font-size: 2.625rem;
+  }
+  table tr td,
+  table input {
+    font-size: 1.5rem;
+  }
+}
+
+/* screen size over 1000px */
+@media only screen and (min-width: 1001px) {
+  body {
+    border: 5px solid orange;
+  }
+  main {
+    display: flex;
+    align-items: center;
+  }
+  .data {
+    flex: 2;
+  }
+  .chart {
+    flex: 1;
+  }
+  h1 {
+    font-size: 2.625rem;
+  }
+  table tr td,
+  table input {
+    font-size: 1.5rem;
+  }
+  footer {
+    font-size: 1.25rem;
+  }
+}
