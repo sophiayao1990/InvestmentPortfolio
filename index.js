@@ -1,3 +1,4 @@
+import stockNameQtyArr from "./database.js";
 import printDataToHtml from "./components/html.js";
 import { fetchSingleStock } from "./components/fetchStock.js";
 import {
@@ -21,10 +22,10 @@ const getAllCurrentStock = async (stockName, quantity) => {
 };
 
 const main = async () => {
-  let stockNameQtyArr = [
-    { stockName: "amd", quantity: 10 },
-    { stockName: "amzn", quantity: 15 },
-  ];
+  //   let stockNameQtyArr = [
+  //     { stockName: "amd", quantity: 10 },
+  //     { stockName: "amzn", quantity: 15 },
+  //   ];
 
   //   ?????
   await Promise.all(
