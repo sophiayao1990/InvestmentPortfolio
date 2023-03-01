@@ -1,8 +1,3 @@
-// Google Pie Chart
-
-// let stockInChart = [["Symbol", "value"]];
-// [[], [], []];
-
 let prepareStockInChart = (stockNameToObjMap) => {
   let stockInChart = [["Symbol", "value"]];
   let keys = [...stockNameToObjMap.keys()];
@@ -17,7 +12,6 @@ let prepareStockInChart = (stockNameToObjMap) => {
 };
 
 // Google Pie Chart
-
 function drawChart(stockInChart) {
   var data = google.visualization.arrayToDataTable(stockInChart);
   var options = {

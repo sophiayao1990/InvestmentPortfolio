@@ -32,4 +32,4 @@ const fetchSingleStock = async (stockName, quantity, mockMode = false) => {
   //   console.log(stock);
 };
 
-export default fetchSingleStock;
+export { fetchSingleStock, getSubtotalValue };

@@ -1,18 +1,23 @@
 import printDataToHtml from "./components/html.js";
-import fetchSingleStock from "./components/fetchStock.js";
-// import drawPieChart from "./components/drawChart.js";
+import { fetchSingleStock } from "./components/fetchStock.js";
 import {
   loadGoogleChartLibrary,
   prepareStockInChart,
   drawChart,
 } from "./components/drawChart.js";
+import {
+  deleteStock,
+  quantityEdit,
+  saveQtyChange,
+} from "./components/Stock.js";
 
 const stockNameToObjMap = new Map();
 const getAllCurrentStock = async (stockName, quantity) => {
   let stock = await fetchSingleStock(stockName, quantity);
   stockNameToObjMap.set(stockName, stock);
-  console.log(stockNameToObjMap.get(stockName));
-  printDataToHtml(stockNameToObjMap.get(stockName));
+  console.log(stockNameToObjMap, stockNameToObjMap.get(stockName));
+  printDataToHtml(stockNameToObjMap);
+  addEventListener(stockNameToObjMap);
 };
 
 const main = async () => {
@@ -29,8 +34,7 @@ const main = async () => {
   drawChart(prepareStockInChart(stockNameToObjMap));
 };
 
-main();
-
+/* Add Stock */
 const inputAdd = document.getElementById("input-add");
 const btnAdd = document.getElementById("btn-add");
 btnAdd.addEventListener("click", () => {
@@ -45,8 +49,33 @@ document.getElementById("btn-cancel-stock").addEventListener("click", () => {
 
 document.getElementById("btn-add-stock").addEventListener("click", async () => {
   const newStockName = inputAdd.value.toUpperCase();
-  await getAllCurrentStock(newStockName, 10);
+  await getAllCurrentStock(newStockName, 0);
   inputAdd.value = "";
   modal.style.display = "none";
   drawChart(prepareStockInChart(stockNameToObjMap));
 });
+
+const addEventListener = (stockNameToObjMap) => {
+  [...stockNameToObjMap.keys()].map((stockName) => {
+    // Delete Stock
+    document
+      .getElementById(`btn-delete-${stockName}`)
+      .addEventListener("click", () => {
+        deleteStock(stockName, stockNameToObjMap);
+      });
+
+    // Edit & Save Quantity
+    document
+      .getElementById(`btn-edit-${stockName}`)
+      .addEventListener("click", () => {
+        quantityEdit(stockName);
+      });
+    document
+      .getElementById(`${stockName}-quantity`)
+      .addEventListener("change", () => {
+        saveQtyChange(stockName, stockNameToObjMap);
+      });
+  });
+};
+
+main();
