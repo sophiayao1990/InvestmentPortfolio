@@ -13,14 +13,13 @@ function deleteStock(stockName, stockNameToObjMap) {
   drawChart(prepareStockInChart(stockNameToObjMap));
 }
 
-/* Edit Stock Quantity */
+/* Edit & Save Stock Quantity */
 function quantityEdit(stockName) {
   const stockQuantity = document.getElementById(`${stockName}-quantity`);
   stockQuantity.disabled = false;
   stockQuantity.focus();
   stockQuantity.select();
 }
-/* Save Stock Quantity */
 function saveQtyChange(stockName, stockNameToObjMap) {
   const stockQuantity = document.getElementById(`${stockName}-quantity`);
 

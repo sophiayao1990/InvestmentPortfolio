@@ -1,11 +1,36 @@
 const getChange = (currentPrice, prevDayClosePrice) => {
-  return (((currentPrice - prevDayClosePrice) / currentPrice) * 100).toFixed(2);
+  return (
+    ((currentPrice - prevDayClosePrice) / prevDayClosePrice) *
+    100
+  ).toFixed(2);
 };
+
 const getSubtotalValue = (currentPrice, quantity) => {
   return (currentPrice * quantity).toFixed(2);
 };
 
-const fetchSingleStock = async (stockName, quantity, mockMode = false) => {
+const prepareStockObj = (
+  stockName,
+  quantity,
+  priceJsonRes,
+  timeSeriesJsonRes
+) => {
+  let stock = {};
+  stock.name = stockName.toUpperCase();
+  stock.quantity = quantity;
+  stock.currentPrice = parseFloat(priceJsonRes.price).toFixed(2);
+  stock.prevDayClosePrice = parseFloat(
+    timeSeriesJsonRes.values[1].close
+  ).toFixed(2);
+  stock.change = getChange(stock.currentPrice, stock.prevDayClosePrice);
+  stock.subtotalValue = getSubtotalValue(stock.currentPrice, stock.quantity);
+
+  return stock;
+};
+
+const fetchSingleStock = async (stockName, quantity) => {
+  let stock = {};
+
   const api = "https://api.twelvedata.com/";
   const apikey = "apikey=8ed8002e5c534c129cbae9ffc63d7501";
 
@@ -13,23 +38,25 @@ const fetchSingleStock = async (stockName, quantity, mockMode = false) => {
     fetch(`${api}price?symbol=${stockName}&${apikey}`),
     fetch(`${api}time_series?symbol=${stockName}&interval=1day&${apikey}`),
   ]);
-  const priceJsonRes = await priceFetchRes.json();
-  const timeSeriesJsonRes = await timeSeriesFetchRes.json();
 
-  let stock = {};
-  stock.name = stockName;
-  stock.quantity = quantity;
-  stock.currentPrice = mockMode
-    ? 400
-    : parseFloat(priceJsonRes.price).toFixed(2);
-  stock.prevDayClosePrice = mockMode
-    ? 360
-    : parseFloat(timeSeriesJsonRes.values[1].close).toFixed(2);
-  stock.change = getChange(stock.currentPrice, stock.prevDayClosePrice);
-  stock.subtotalValue = getSubtotalValue(stock.currentPrice, stock.quantity);
+  let priceJsonRes = await priceFetchRes.json();
+  let timeSeriesJsonRes = await timeSeriesFetchRes.json();
+  let apiSuccess =
+    priceJsonRes.status !== "error" && timeSeriesJsonRes.status !== "error";
 
-  return stock;
-  //   console.log(stock);
+  if (apiSuccess) {
+    stock = prepareStockObj(
+      stockName,
+      quantity,
+      priceJsonRes,
+      timeSeriesJsonRes
+    );
+  }
+
+  return {
+    stock: stock,
+    apiSuccess: apiSuccess,
+  };
 };
 
-export { fetchSingleStock, getSubtotalValue };
+export { getChange, getSubtotalValue, fetchSingleStock };

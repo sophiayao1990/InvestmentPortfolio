@@ -4,7 +4,7 @@ const stockNameQtyArr = [
     quantity: 10,
   },
   {
-    stockName: "AMZN",
+    stockName: "amzn",
     quantity: 15,
   },
   {
