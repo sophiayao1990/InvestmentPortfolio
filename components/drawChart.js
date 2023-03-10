@@ -1,13 +1,19 @@
 let prepareStockInChart = (stockNameToObjMap) => {
   let stockInChart = [["Symbol", "value"]];
-  let keys = [...stockNameToObjMap.keys()];
-  keys.map((stockName) => {
+  // let keys = [...stockNameToObjMap.keys()];
+  // keys.map((stockName) => {
+  //   stockInChart.push([
+  //     stockNameToObjMap.get(stockName).name,
+  //     stockNameToObjMap.get(stockName).subtotalValue,
+  //   ]);
+  // });
+
+  for (let stockName of stockNameToObjMap.keys()) {
     stockInChart.push([
       stockNameToObjMap.get(stockName).name,
       stockNameToObjMap.get(stockName).subtotalValue,
     ]);
-  });
-  console.log(stockNameToObjMap, stockInChart);
+  }
   return stockInChart;
 };
 

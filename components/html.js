@@ -9,7 +9,8 @@ const printDataToHtml = (stockNameToObjMap) => {
         <th></th>
       </tr>
     `;
-  [...stockNameToObjMap.keys()].map((stockName) => {
+
+  for (let stockName of stockNameToObjMap.keys()) {
     const data = stockNameToObjMap.get(stockName);
     stockHtml += `
       <tr id='${data.name}'>
@@ -32,7 +33,7 @@ const printDataToHtml = (stockNameToObjMap) => {
         </td>
       </tr>
       `;
-  });
+  }
 
   document.getElementById("table-data").innerHTML = stockHtml;
 };

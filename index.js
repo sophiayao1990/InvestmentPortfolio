@@ -19,12 +19,10 @@ const getAllCurrentStock = async (stockName, quantity, stockNameToObjMap) => {
   );
   if (!apiSuccess) {
     if (priceJsonResCode === 400) {
-      console.log(priceJsonResCode);
-      alert("stock doesn't exist");
+      alert("Stock doesn't exist");
       return;
     } else if (priceJsonResCode === 429) {
-      console.log(priceJsonResCode);
-      alert("API Error: call API too often");
+      alert("API Error: call API too often, the minutely maximum is 8");
       return;
     }
   }
