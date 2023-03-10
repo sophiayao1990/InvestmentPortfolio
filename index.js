@@ -13,10 +13,20 @@ import {
 } from "./components/Stock.js";
 
 const getAllCurrentStock = async (stockName, quantity, stockNameToObjMap) => {
-  let { stock, apiSuccess } = await fetchSingleStock(stockName, quantity);
+  let { stock, apiSuccess, priceJsonResCode } = await fetchSingleStock(
+    stockName,
+    quantity
+  );
   if (!apiSuccess) {
-    alert("API Error");
-    return;
+    if (priceJsonResCode === 400) {
+      console.log(priceJsonResCode);
+      alert("stock doesn't exist");
+      return;
+    } else if (priceJsonResCode === 429) {
+      console.log(priceJsonResCode);
+      alert("API Error: call API too often");
+      return;
+    }
   }
   stockNameToObjMap.set(stockName.toUpperCase(), stock);
   printDataToHtml(stockNameToObjMap);

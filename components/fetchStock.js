@@ -56,6 +56,7 @@ const fetchSingleStock = async (stockName, quantity) => {
   return {
     stock: stock,
     apiSuccess: apiSuccess,
+    priceJsonResCode: priceJsonRes.code,
   };
 };
 
